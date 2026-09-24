@@ -3,9 +3,10 @@
   --ink: #1c1915;
   --muted: #5c564c;
   --line: #e4ddd2;
-  --paper: #f7f3ec;
+  --paper: #f6f1e8;
   --card: #fffdf9;
   --accent: #6b3f2a;
+  --chip: #efe7db;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -14,36 +15,77 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Songti SC", "Source Han Serif SC", serif;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 a { color: var(--accent); }
-header, main, footer { width: min(760px, calc(100% - 40px)); margin: 0 auto; }
-header { padding: 36px 0 12px; }
-.brand { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
-h1 { font-weight: 500; font-size: 34px; line-height: 1.25; margin: 10px 0 8px; }
-h2 { font-weight: 500; font-size: 22px; margin: 32px 0 8px; }
-.lede, .meta { color: var(--muted); }
-nav.site {
-  display: flex; flex-wrap: wrap; gap: 8px 16px;
-  padding: 8px 0 20px;
+.wrap {
+  width: min(720px, calc(100% - 40px));
+  margin: 0 auto;
+}
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+}
+.bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 28px;
+  min-height: 64px;
+  padding: 10px 0;
+}
+.brand {
+  flex: 0 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+nav.site {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   font-size: 14px;
 }
-nav.site a { text-decoration: none; }
-main { padding: 8px 0 48px; }
+nav.site a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+nav.site a.current {
+  background: var(--chip);
+  color: var(--accent);
+}
+h1 {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.25;
+  margin: 28px 0 8px;
+}
+h2 { font-weight: 500; font-size: 22px; margin: 28px 0 8px; }
+.lede, .meta { color: var(--muted); margin: 0; }
+main { padding-bottom: 56px; }
 section.card {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 8px 28px 24px;
+  padding: 4px 28px 28px;
   margin-top: 20px;
 }
 ul { padding-left: 1.2em; }
 li { margin: 6px 0; }
 footer {
   border-top: 1px solid var(--line);
-  padding: 20px 0 40px;
+  padding: 20px 0 48px;
   color: var(--muted);
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   font-size: 13px;
@@ -55,4 +97,10 @@ footer {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
+}
+@media (max-width: 680px) {
+  .bar-inner { align-items: flex-start; flex-direction: column; gap: 8px; padding: 14px 0; }
+  nav.site { justify-content: flex-start; margin-left: -10px; }
+  h1 { font-size: 30px; }
+  section.card { padding: 4px 18px 20px; }
 }
